@@ -5,9 +5,9 @@
       <div class="two">2</div>
       <div class="three">3</div>
       <div class="four">4</div>
-      <div class="four">5</div>
-      <div class="four">6</div>
-      
+      <div class="five">5</div>
+      <div class="six">6</div>
+
     </ViewPage>
   </div>
 </template>
@@ -51,5 +51,15 @@
     width: 7.5rem;
     height: 3rem;
     background-color: #ff0000;
+  }
+  .five {
+    width: 7.5rem;
+    height: 3rem;
+    background-color: #EEEE00;
+  }
+  .six {
+    width: 7.5rem;
+    height: 3rem;
+    background-color: #ccaaff;
   }
 </style>
