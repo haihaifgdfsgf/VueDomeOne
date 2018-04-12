@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box{
+      width: 300px;
+      height: 300px;
+      border: solid #00ccff 1px;
+      perspective:800px
+    }
+    #translate {
+      width: 200px;
+      height: 200px;
+      background-color: brown;
+      transition: all 3s;
+      transform: rotate(0deg) translateZ(-300px);
+
+    }
+    #translate:hover{
+      transform: rotate(0deg) translateZ(300px);
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div id="translate"></div>
+</div>
+
+</body>
+</html>

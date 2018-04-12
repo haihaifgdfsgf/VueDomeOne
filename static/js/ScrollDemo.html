@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box-wai {
+      width: 400px;
+      height: 250px;
+      border: solid #cc00ff 1px;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+      perspective:800px;
+    }
+
+    .box-nei {
+      width: 1200px;
+      height: 200px;
+      position: absolute;
+      top: 25px;
+      left: -92px;
+      border: solid #00ccff 1px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .box-nei div {
+      height: 200px;
+      width: 180px;
+      background-color: brown;
+      font-size: 50px;
+      text-align: center;
+      line-height: 200px;
+      color: white;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var box = document.getElementById('box');
+      var startX = -1;
+      var left = box.offsetLeft;
+      box.onmousemove = function () {
+        var x = event.screenX;
+        if (startX != -1) {
+          var dx = x - startX;
+          console.log(box.offsetLeft);
+          var mLeft = box.offsetLeft;
+          if (mLeft <-600) {
+            box.style.left = 0 + 'px';
+            left = 0;
+          } else {
+            box.style.left = left + dx + 'px';
+          }
+
+        } else {
+          startX = x;
+        }
+      }
+      box.onmouseout = function () {
+        startX = -1;
+        left = box.offsetLeft;
+      }
+
+    }
+  </script>
+</head>
+<body>
+<div class="box-wai">
+  <div class="box-nei" id="box">
+    <div style="transform: rotateY(-0deg) translateZ(-100px)">1</div>
+    <div style="transform: rotateY(1deg) translateZ(300px)">2</div>
+    <div style="transform: translateZ(-300px)">3</div>
+    <div style="transform: translateZ(-300px)">1</div>
+    <div style="transform: rotateY(1deg) translateZ(300px)">2</div>
+    <div style="transform: translateZ(-300px)">3</div>
+  </div>
+</div>
+</body>
+</html>

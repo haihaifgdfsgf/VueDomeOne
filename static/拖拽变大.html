@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="./js/flexible.js"></script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .box {
+      width: 7.5rem;
+      height: 3rem;
+      border: solid #cc00ff 1px;
+      margin: 0.5rem auto;
+      position: relative;
+    }
+
+    .box .child {
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      top: 0.5rem;
+      left: 0px;
+      perspective: 800px;
+    }
+
+    .box .child .content {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: brown;
+      perspective: 800px;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var box = document.getElementById('box');
+      var content = document.getElementById('content');
+      var child = document.getElementById('child');
+      box.ontouchstart = function (ev) {
+        var mEvent = ev || event;
+        var startX = mEvent.touches[0].clientX;
+        var left = child.offsetLeft;
+        var translateZ = content.style.transform;
+        var traslateZV = parseInt(translateZ.split('(')[1]);
+        var isBoolean = false;
+        document.ontouchmove = function (ev) {
+          var oEvent = ev || event;
+          var x = oEvent.touches[0].clientX;
+          var dx = x - startX;
+          if (traslateZV > 180||isBoolean) {
+            traslateZV -= dx;
+            isBoolean=true;
+          } else {
+            traslateZV += dx;
+          }
+
+          left += dx;
+          console.log(traslateZV);
+          content.style.transform = "translateZ(" + traslateZV + "px)";
+          child.style.left = left + 'px';
+          startX = x;
+        }
+        document.ontouchend = function () {
+          document.ontouchmove = null;
+          document.ontouchend = null;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="box" id="box">
+  <div class="child" id="child">
+    <div class="content" id="content" style="transform: translateZ(0px);"></div>
+  </div>
+</div>
+</body>
+</html>
